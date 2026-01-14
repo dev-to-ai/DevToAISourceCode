@@ -114,7 +114,8 @@ sentences = [
 vocab = set()
 for sentence in sentences:
     vocab.update(sentence.split())
-print(vocab)
+print(vocab) # {'powerful', 'ai', 'is', 'learning', 'fun', 'machine'}
+
 # Example 2:
 text_data = "AI is the future and the future is AI"
 # Tokenize and convert to set to find unique words
