@@ -5,23 +5,27 @@
 
 # 1. Unordered: Sets do not maintain any specific order. You cannot access elements by index (e.g., my_set[0] raises an error).
 s = {3, 1, 4}
-print(s)  # Output might be {1, 3, 4} — order not guaranteed
+print(s)  
+# Output might be {1, 3, 4} — order not guaranteed
 
 # 2. Unique Elements: Duplicates are automatically removed.
 # Cleaning datasets
 s = {2, 2, 3, 4, 2, 1, 3, 4, 1}
-print(s) # Output might be {1, 2, 3, 4}
+print(s) 
+# Output might be {1, 2, 3, 4}
 # Create from a list
 data = [1, 2, 2, 3, 4, 4, 5]
 unique_data = set(data)
-print(unique_data) # {1, 2, 3, 4, 5}
+print(unique_data) 
+# {1, 2, 3, 4, 5}
 
 # 3. Mutable: You can add or remove elements after creation.
 s = {1, 2}
 s.add(3)
 s.remove(1)
-s.update([100,101]) #
-print(s)  # {2, 3}
+s.update([100,101])
+print(s)  
+# {2, 3, 100, 101}
 
 # 4. Elements Must Be Hashable. Only immutable types can be in a set.
 # Immutable objects cannot be changed after creation. Any operation that appears to modify them actually creates a new object.
@@ -35,7 +39,8 @@ s = {1, "hello", (2, 3)}
 
 # 6. Empty Set
 empty_set = set()
-print(empty_set) # set()
+print(empty_set) 
+# set()
 # {} creates a dictionary, not a set.
 
 # 7. Frozenset: Immutable Version
@@ -51,21 +56,28 @@ fs = frozenset([1, 2, 3])
 # Symmetric difference (^ or symmetric_difference())
 a = {1, 2, 3}
 b = {3, 4, 5}
-print(a | b)   # {1, 2, 3, 4, 5}
-print(a & b)   # {3}
-print(a - b)   # {1, 2}
-print(a ^ b)   # {1, 2, 4, 5}
+print(a | b)   
+# {1, 2, 3, 4, 5}
+print(a & b)   
+# {3}
+print(a - b)   
+# {1, 2}
+print(a ^ b)   
+# {1, 2, 4, 5}
 
 # Sets for Similarity (Jaccard Similarity)
 # Used in recommendation systems & document similarity.
 doc1 = {"ai", "machine", "learning"}
 doc2 = {"ai", "deep", "learning"}
 intersection = doc1 & doc2
-print(intersection) # {'learning', 'ai'}
+print(intersection) 
+# {'learning', 'ai'}
 union = doc1 | doc2
-print(union) # {'deep', 'learning', 'machine', 'ai'}
+print(union) 
+# {'deep', 'learning', 'machine', 'ai'}
 jaccard_similarity = len(intersection) / len(union)
-print(jaccard_similarity) # 0.5
+print(jaccard_similarity) 
+# 0.5
 
 ##### Three - Performance Advantage: Sets vs. Lists
 # In AI, you often work with millions of data points. Checking if a specific value exists in a collection is a frequent operation.
@@ -92,8 +104,9 @@ print(f"Set Search:  {set_duration:.6f} seconds")
 # Calculate the speed factor
 factor = list_duration / set_duration
 print(f"\nResult: Sets are approximately {factor:,.0f}x faster in this case.")
+# Result: Sets are approximately 21,814x faster in this case.
 """
-Why the difference is so massive
+Why the difference is so massive?
 The reason for this disparity lies in the underlying data structure.
 Lists (Linear Search): To find the target, Python starts at index 0 and checks every single box until it finds a match. If your target is at the end of 10 million items, it does 10 million checks.
 Sets (Hash Table): A set uses a hashing function to calculate the exact "address" of the data. Instead of searching, it jumps directly to the location where the data should be.
@@ -114,19 +127,22 @@ sentences = [
 vocab = set()
 for sentence in sentences:
     vocab.update(sentence.split())
-print(vocab) # {'powerful', 'ai', 'is', 'learning', 'fun', 'machine'}
+print(vocab) 
+# {'powerful', 'ai', 'is', 'learning', 'fun', 'machine'}
 
 # Example 2:
 text_data = "AI is the future and the future is AI"
 # Tokenize and convert to set to find unique words
 vocabulary = set(text_data.lower().split())
-print(vocabulary) # {'ai', 'future', 'and', 'is', 'the'}
+print(vocabulary) 
+# {'ai', 'future', 'and', 'is', 'the'}
 
 # 2. Stop Word Removal
 stop_words = {"is", "the", "and", "a"}
 tokens = ["ai", "is", "the", "future"]
 filtered_tokens = [word for word in tokens if word not in stop_words]
-print(filtered_tokens) # ['ai', 'future']
+print(filtered_tokens) 
+# ['ai', 'future']
 
 ##### - Why Sets Matter in AI & Data Science
 

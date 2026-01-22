@@ -5,12 +5,16 @@
 # 3. Allow duplicate values ("Python", "Python")
 # 4. Able to contain nested lists [10, 20]
 my_list = ["Python", 2026, 3.14, True, "Python", [10, 20]]
-# print(my_list)
+print(my_list) 
+# ['Python', 2026, 3.14, True, 'Python', [10, 20]]
 
 # 5. Ordered: Index starts at 0
-print(my_list[0]) # Python
-# print(my_list[2]) # 3.14
-print(my_list[5][0]) # 10
+print(my_list[0]) 
+# Python
+print(my_list[2]) 
+# 3.14
+print(my_list[5][0]) 
+# 10
 
 # 6. Mutable: Items can be changed
 print(f"Original list: {my_list}") 
@@ -39,7 +43,8 @@ print(my_list)
 # 3. .insert(index, value) - Adds an item at a specific position
 # Use case: Inserting a 'Class ID' at the beginning of a data row
 my_list.insert(0, "ID_001")
-print(my_list[0]) # ID_001
+print(my_list[0]) 
+# ID_001
 
 # 4. .remove(value) - Removes the FIRST occurrence of a value
 # Use case: Removing an unwanted outlier or 'None' value from data
@@ -53,19 +58,22 @@ print(my_list)
 # 5. .pop(index) - Removes and RETURNS the item at the index (default is last)
 # Use case: Taking the last label out of a list to use it for validation
 removed_item = my_list.pop(1)
-print(removed_item) # 2026
+print(removed_item) 
+# 2026
 # NOTE: 
 # Use remove if you know the value you want to get rid of. 
 # Use pop if you know the position (index) of the item.
 
-# 6. .index(value) - Returns the first index of a value
+# 6. .index(value) - Returns the FIRST index of a value
 # Use case: Finding where a specific label is located
 position = my_list.index(3.14)
-print(position) # 1
+print(position) 
+# 1
 
 # 7. .count(value) - Counts how many times a value appears
 # Use case: Checking for class imbalance (e.g., how many 'True' labels exist)
-print(my_list.count(True)) # 1
+print(my_list.count(True)) 
+# 1
 
 ##### Three - Global Functions for AI Data
 
@@ -108,10 +116,13 @@ print(f"\nModel Confidence Range: {lowest_score} to {highest_score}")
 # 5. sum() and sorted() - Quick statistics
 # sum() can calculate total loss; sorted() can rank your best predictions
 avg_confidence = sum(confidence_scores) / len(confidence_scores)
-print(f"Average Confidence: {avg_confidence:.2f}") # Average Confidence: 0.88
+print(f"Average Confidence: {avg_confidence:.2f}") 
+# Average Confidence: 0.88
 ranked_scores = sorted(confidence_scores, reverse=True)
-print(f"Ranked Scores: {ranked_scores}") # Ranked Scores: [0.98, 0.92, 0.85, 0.77]
-print(f"Top 3 Scores: {ranked_scores[:3]}") # Top 3 Scores: [0.98, 0.92, 0.85]
+print(f"Ranked Scores: {ranked_scores}") 
+# Ranked Scores: [0.98, 0.92, 0.85, 0.77]
+print(f"Top 3 Scores: {ranked_scores[:3]}") 
+# Top 3 Scores: [0.98, 0.92, 0.85]
 
 ##### Four - List Comprehensions (The AI Secret Weapon)
 
@@ -127,7 +138,7 @@ for p in raw_pixels:
 # Syntax: [expression for item in list]
 scaled_pixels = [p / 255.0 for p in raw_pixels]
 print(f"Scaled Data: {scaled_pixels}")
-###Side-by-Side Comparisons: For List Comprehensions, show the 4-line for loop on the left and the 1-line comprehension on the right. Cross out the 4-line version with a red "X."
+# Scaled Data: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
 
 # 2. The Filter: Removing Low-Confidence Results
 # Often, an AI model outputs many predictions, but you only want to keep the ones it is "sure" about.
@@ -143,14 +154,16 @@ print(f"High Confidence Predictions: {high_confidence}")
 raw_labels = ["  Cat", "dog  ", " FISH ", "cat "]
 # Lowercase everything and remove empty spaces
 clean_labels = [label.strip().lower() for label in raw_labels]
-print(f"Cleaned Labels: {clean_labels}") # Cleaned Labels: ['cat', 'dog', 'fish', 'cat']
+print(f"Cleaned Labels: {clean_labels}") 
+# Cleaned Labels: ['cat', 'dog', 'fish', 'cat']
 
 # 4. Advanced: The If-Else (Categorization)
 # You can even use list comprehensions to create binary labels (converting numbers to "Pass/Fail").
 scores = [0.8, 0.4, 0.9, 0.3]
 # If score >= 0.5 then 1 (Pass), else 0 (Fail)
 binary_labels = [1 if s >= 0.5 else 0 for s in scores]
-print(f"Binary Labels: {binary_labels}") # Binary Labels: [1, 0, 1, 0]
+print(f"Binary Labels: {binary_labels}") 
+# Binary Labels: [1, 0, 1, 0]
 
 ##### Five - Advanced: Slicing for Data Splitting
 
