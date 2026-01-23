@@ -11,23 +11,22 @@ point = (3, 4)          # A 2D coordinate
 # point[0] = 100 # 'tuple' object does not support item assignment
 rgb_color = (255, 128, 0)
 print(rgb_color[2]) 
-# 0
+# PRINT RESULT: 0
 batch_size = (32,) # Single-element tuple (comma is required)
 print(batch_size) 
-# (32,)
+# PRINT RESULT: (32,)
 shape = 224, 224, 3 # Tuple without parentheses
 print(shape) 
-# (224, 224, 3)
+# PRINT RESULT: (224, 224, 3)
 height = shape[0]
 width = shape[1]
 channels = shape[2]
 print(shape[0]) 
-# 224
+# PRINT RESULT: 224
 print(height, width, channels) 
-# 224 224 3
-#Last one
-print(shape[-1]) 
-# 3
+# PRINT RESULT: 224 224 3
+print(shape[-1]) # -1: Last one
+# PRINT RESULT: 3
 
 ##### Two - Tuples in AI Model Configuration
 model_config = (
@@ -36,8 +35,7 @@ model_config = (
     10,              # number of classes
     "relu"
 )
-model_type, input_shape, num_classes, activation = model_config
-# This is called tuple unpacking.
+model_type, input_shape, num_classes, activation = model_config # This is called tuple unpacking.
 
 ##### Three - Tuples as Dictionary Keys (Very Important in AI)
 
@@ -47,7 +45,7 @@ feature_map = {
     (0, 1): "edge"
 }
 print(feature_map[(1, 0)]) 
-# object
+# PRINT RESULT: object
 
 #### Four - Nested Tuples for Complex AI Structures
 layer_structure = (
@@ -57,7 +55,7 @@ layer_structure = (
 )
 for layer in layer_structure:
     print(layer)
-"""
+""" PRINT RESULT: 
 ('Conv2D', (3, 3), 32)
 ('MaxPool', (2, 2))
 ('Dense', 128)

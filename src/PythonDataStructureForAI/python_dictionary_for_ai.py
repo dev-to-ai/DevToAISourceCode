@@ -14,7 +14,7 @@ student["age"] = 21              # Update value
 student["grade"] = "A"           # Add new key-value pair
 del student["courses"]           # Remove a key-value pair
 print("After mutation:", student)
-# After mutation: {'name': 'Alice', 'age': 21, 'grade': 'A'}
+# PRINT RESULT: After mutation: {'name': 'Alice', 'age': 21, 'grade': 'A'}
 
 # 2. Unordered (as of Python 3.7+, insertion order is preserved).
 # The order below is the same as insertion order
@@ -23,7 +23,7 @@ person["first_name"] = "John"
 person["last_name"] = "Doe"
 person["age"] = 30
 print("Insertion order preserved:", person)
-# Insertion order preserved: {'first_name': 'John', 'last_name': 'Doe', 'age': 30}
+# PRINT RESULT: Insertion order preserved: {'first_name': 'John', 'last_name': 'Doe', 'age': 30}
 
 # 3. Keys must be immutable (e.g., strings, numbers, tuples), but values can be any type.
 valid_dict = {
@@ -32,21 +32,21 @@ valid_dict = {
     (1, 2): "tuple key"          # tuple key
 }
 print("Valid keys:", valid_dict)
-# Valid keys: {'id': 101, 3.14: 'pi', (1, 2): 'tuple key'}
+# PRINT RESULT: Valid keys: {'id': 101, 3.14: 'pi', (1, 2): 'tuple key'}
 # invalid_dict = {[1, 2]: "list key"}  # lists are mutable. unhashable type: 'list'
 
 # 4. Fast access: Average O(1) time complexity for lookups.
 print("Name lookup:", student["name"])   # Fast key-based access
-# Name lookup: Alice
+# PRINT RESULT: Name lookup: Alice
 # Demonstrating dictionary access vs list access
 numbers = list(range(1_000_000))
 number_dict = {i: i for i in range(1_000_000)}
 # Dictionary lookup (fast)
 print(number_dict[999_999])
-# 999999
+# PRINT RESULT: 999999
 # List lookup (requires index)
 print(numbers[999_999])
-# 999999
+# PRINT RESULT: 999999
 
 ##### Two - Essential Dictionary Methods for AI
 
@@ -60,17 +60,17 @@ training_state = {
 
 # 1. .keys() - Useful for checking which parameters are being tracked
 print(f"Tracked Parameters: {list(training_state.keys())}")
-# Tracked Parameters: ['learning_rate', 'optimizer', 'loss_function', 'epochs_completed']
+# PRINT RESULT: Tracked Parameters: ['learning_rate', 'optimizer', 'loss_function', 'epochs_completed']
 
 # 2. .values() - Useful for checking the settings without the labels
 print(f"Current Settings: {list(training_state.values())}")
-# Current Settings: [0.01, 'Adam', 'CrossEntropy', 5]
+# PRINT RESULT: Current Settings: [0.01, 'Adam', 'CrossEntropy', 5]
 
 # 3. .items() - Perfect for logging or printing status during training
 print("--- Model Status Report ---")
 for parameter, value in training_state.items():
     print(f"{parameter.replace('_', ' ').title()}: {value}")
-"""
+"""PRINT RESULT:
 --- Model Status Report ---
 Learning Rate: 0.01
 Optimizer: Adam
@@ -86,15 +86,15 @@ new_results = {
 }
 training_state.update(new_results)
 print(f"\nUpdated Accuracy: {training_state['current_accuracy']}")
-# Updated Accuracy: 0.94
+# PRINT RESULT: Updated Accuracy: 0.94
 
 ##### Three - Word-to-Index Vocabulary
 # Build vocabulary from a list of words
 words = ["cat", "dog", "bird", "cat", "dog"]
 vocab = {word: idx for idx, word in enumerate(set(words))}
 print(vocab)
-# {'cat': 0, 'dog': 1, 'bird': 2}
-"""
+# PRINT RESULT: {'cat': 0, 'dog': 1, 'bird': 2}
+""" Explanation:
 Using set() to Get Unique Words: {"cat", "dog", "bird"}
 enumerate() for Indexing: enumerate(set(words))
 This creates pairs of (index, word):
@@ -112,7 +112,7 @@ Result: {'cat': 0, 'dog': 1, 'bird': 2}
 sentence = ["dog", "cat", "bird"]
 encoded = [vocab[word] for word in sentence]
 print(encoded)  
-# [1, 0, 2]
+# PRINT RESULT: [1, 0, 2]
 
 ##### Four - AI Dictionary Example
 
@@ -139,13 +139,13 @@ ai_dictionary = {
 # 2. Accessing AI Definitions
 term = "Machine Learning"
 print(ai_dictionary[term])
-# A subset of AI where systems learn patterns from data instead of being explicitly programmed.
+# PRINT RESULT: A subset of AI where systems learn patterns from data instead of being explicitly programmed.
 
 # 3. Safe Lookup (Avoid Errors)
 term = "Computer Vision"
 definition = ai_dictionary.get(term, "Term not found in AI dictionary.")
 print(definition) 
-# Term not found in AI dictionary.
+# PRINT RESULT: Term not found in AI dictionary.
 
 #4. Loop Through the AI Dictionary
 for term, explanation in ai_dictionary.items():
@@ -155,7 +155,7 @@ for term, explanation in ai_dictionary.items():
 def explain_ai_term(term):
     return ai_dictionary.get(term, "Sorry, this AI term is not in the dictionary.")
 print(explain_ai_term("Deep Learning"))
-# A subset of machine learning that uses neural networks with many layers to learn complex patterns.
+# PRINT RESULT: A subset of machine learning that uses neural networks with many layers to learn complex patterns.
 
 # 6. Real-World Use Case (Mini AI Tutor)
 while True:
@@ -163,7 +163,7 @@ while True:
     if user_input.lower() == "exit":
         break
     print(explain_ai_term(user_input))
-"""
+""" Explanation:
 If enter "Training Data",
 It prints "Data used to teach a machine learning model." 
 """

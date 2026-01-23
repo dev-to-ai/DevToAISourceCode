@@ -5,19 +5,21 @@
 
 # 1. Unordered: Sets do not maintain any specific order. You cannot access elements by index (e.g., my_set[0] raises an error).
 s = {3, 1, 4}
-print(s)  
+print(s)
+# PRINT RESULT: {1, 3, 4}
 # Output might be {1, 3, 4} — order not guaranteed
 
 # 2. Unique Elements: Duplicates are automatically removed.
 # Cleaning datasets
 s = {2, 2, 3, 4, 2, 1, 3, 4, 1}
-print(s) 
-# Output might be {1, 2, 3, 4}
+print(s)
+# PRINT RESULT: {1, 2, 3, 4}
+# Output might be {1, 2, 3, 4} — order not guaranteed
 # Create from a list
 data = [1, 2, 2, 3, 4, 4, 5]
 unique_data = set(data)
 print(unique_data) 
-# {1, 2, 3, 4, 5}
+# PRINT RESULT: {1, 2, 3, 4, 5}
 
 # 3. Mutable: You can add or remove elements after creation.
 s = {1, 2}
@@ -25,7 +27,7 @@ s.add(3)
 s.remove(1)
 s.update([100,101])
 print(s)  
-# {2, 3, 100, 101}
+# PRINT RESULT: {2, 3, 100, 101}
 
 # 4. Elements Must Be Hashable. Only immutable types can be in a set.
 # Immutable objects cannot be changed after creation. Any operation that appears to modify them actually creates a new object.
@@ -40,7 +42,7 @@ s = {1, "hello", (2, 3)}
 # 6. Empty Set
 empty_set = set()
 print(empty_set) 
-# set()
+# PRINT RESULT: set()
 # {} creates a dictionary, not a set.
 
 # 7. Frozenset: Immutable Version
@@ -57,13 +59,13 @@ fs = frozenset([1, 2, 3])
 a = {1, 2, 3}
 b = {3, 4, 5}
 print(a | b)   
-# {1, 2, 3, 4, 5}
+# PRINT RESULT: {1, 2, 3, 4, 5}
 print(a & b)   
-# {3}
+# PRINT RESULT: {3}
 print(a - b)   
-# {1, 2}
+# PRINT RESULT: {1, 2}
 print(a ^ b)   
-# {1, 2, 4, 5}
+# PRINT RESULT: {1, 2, 4, 5}
 
 # Sets for Similarity (Jaccard Similarity)
 # Used in recommendation systems & document similarity.
@@ -71,13 +73,13 @@ doc1 = {"ai", "machine", "learning"}
 doc2 = {"ai", "deep", "learning"}
 intersection = doc1 & doc2
 print(intersection) 
-# {'learning', 'ai'}
+# PRINT RESULT: {'learning', 'ai'}
 union = doc1 | doc2
 print(union) 
-# {'deep', 'learning', 'machine', 'ai'}
+# PRINT RESULT: {'deep', 'learning', 'machine', 'ai'}
 jaccard_similarity = len(intersection) / len(union)
 print(jaccard_similarity) 
-# 0.5
+# PRINT RESULT: 0.5
 
 ##### Three - Performance Advantage: Sets vs. Lists
 # In AI, you often work with millions of data points. Checking if a specific value exists in a collection is a frequent operation.
@@ -96,15 +98,17 @@ start_time = time.time()
 is_in_list = target in large_list
 list_duration = time.time() - start_time
 print(f"List Search: {list_duration:.6f} seconds")
+# PRINT RESULT: List Search: 0.059848 seconds
 # --- Testing the Set ---
 start_time = time.time()
 is_in_set = target in large_set
 set_duration = time.time() - start_time
 print(f"Set Search:  {set_duration:.6f} seconds")
+# PRINT RESULT: Set Search:  0.000003 seconds
 # Calculate the speed factor
 factor = list_duration / set_duration
 print(f"\nResult: Sets are approximately {factor:,.0f}x faster in this case.")
-# Result: Sets are approximately 21,814x faster in this case.
+# PRINT RESULT: Result: Sets are approximately 22,820x faster in this case.
 """
 Why the difference is so massive?
 The reason for this disparity lies in the underlying data structure.
@@ -128,28 +132,29 @@ vocab = set()
 for sentence in sentences:
     vocab.update(sentence.split())
 print(vocab) 
-# {'powerful', 'ai', 'is', 'learning', 'fun', 'machine'}
+# PRINT RESULT: {'powerful', 'ai', 'is', 'learning', 'fun', 'machine'}
 
 # Example 2:
 text_data = "AI is the future and the future is AI"
 # Tokenize and convert to set to find unique words
 vocabulary = set(text_data.lower().split())
 print(vocabulary) 
-# {'ai', 'future', 'and', 'is', 'the'}
+# PRINT RESULT: {'ai', 'future', 'and', 'is', 'the'}
 
 # 2. Stop Word Removal
 stop_words = {"is", "the", "and", "a"}
 tokens = ["ai", "is", "the", "future"]
 filtered_tokens = [word for word in tokens if word not in stop_words]
 print(filtered_tokens) 
-# ['ai', 'future']
+# PRINT RESULT: ['ai', 'future']
 
-##### - Why Sets Matter in AI & Data Science
-
-# Sets are extremely useful in AI for:
-# Removing duplicate data
-# Vocabulary building (NLP)
-# Feature selection
-# Similarity comparison
-# Fast membership testing
-# Graph & knowledge representation
+"""
+Why Sets Matter in AI & Data Science?
+Sets are extremely useful in AI for:
+Removing duplicate data
+Vocabulary building (NLP)
+Feature selection
+Similarity comparison
+Fast membership testing
+Graph & knowledge representation
+"""
