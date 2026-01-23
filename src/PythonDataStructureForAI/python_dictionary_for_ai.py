@@ -94,7 +94,7 @@ words = ["cat", "dog", "bird", "cat", "dog"]
 vocab = {word: idx for idx, word in enumerate(set(words))}
 print(vocab)
 # PRINT RESULT: {'cat': 0, 'dog': 1, 'bird': 2}
-""" Explanation:
+""" EXPLANATION:
 Using set() to Get Unique Words: {"cat", "dog", "bird"}
 enumerate() for Indexing: enumerate(set(words))
 This creates pairs of (index, word):
@@ -163,7 +163,7 @@ while True:
     if user_input.lower() == "exit":
         break
     print(explain_ai_term(user_input))
-""" Explanation:
+""" EXPLANATION:
 If enter "Training Data",
 It prints "Data used to teach a machine learning model." 
 """

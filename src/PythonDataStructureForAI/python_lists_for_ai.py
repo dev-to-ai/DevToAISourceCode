@@ -37,7 +37,7 @@ extra_info = ["Deep Learning", 99.9]
 my_list.extend(extra_info)
 print(my_list) 
 # PRINT RESULT: ['Python', 2026, 3.14, True, 'AI', [10, 'ABC'], 'New Data', 'Deep Learning', 99.9]
-# Explanation: 
+# EXPLANATION: 
 # append adds the object as one item (even if it's a list), while extend "unpacks" the list and adds each element individually.
 
 # 3. .insert(index, value) - Adds an item at a specific position
@@ -60,7 +60,7 @@ print(my_list)
 removed_item = my_list.pop(1)
 print(removed_item) 
 # 2026
-# Explanation: 
+# EXPLANATION: 
 # Use remove if you know the value you want to get rid of; use pop if you know the position (index) of the item.
 
 # 6. .index(value) - Returns the FIRST index of a value
