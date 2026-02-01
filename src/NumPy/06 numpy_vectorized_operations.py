@@ -1,4 +1,4 @@
-##### Six. Vectorized Operations
+########## Six. Vectorized Operations ##########
 
 # Vectorization means performing operations on entire arrays at once, instead of looping element by element in Python.
 

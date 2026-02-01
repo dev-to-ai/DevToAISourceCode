@@ -1,4 +1,4 @@
-##### Seven. Mathematical & Statistical Functions
+########## Seven. Mathematical & Statistical Functions ##########
 
 """
 AI = Linear Algebra + Statistics on steroids.

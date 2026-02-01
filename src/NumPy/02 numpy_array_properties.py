@@ -1,4 +1,4 @@
-##### Two. NumPy Arrays Properties (ndarray)
+########## Two. NumPy Arrays Properties (ndarray) ##########
 
 # 1. A NumPy array (ndarray) is:
 # A same data type container
