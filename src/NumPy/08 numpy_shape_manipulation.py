@@ -1,9 +1,8 @@
 ########## Eight. Shape Manipulation ##########
 
-# 1. reshape() — Change the shape, keep the data
-
 import numpy as np
 
+# 1. reshape() — Change the shape, keep the data
 a = np.arange(6)   # [0 1 2 3 4 5]
 print(a.shape)
 # PRINT RESULT: (6,)

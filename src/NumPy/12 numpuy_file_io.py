@@ -7,9 +7,9 @@ Reloading preprocessed data
 Storing early model outputs / checkpoints
 """
 
-# 1. np.save() / np.load() — NumPy Binary Files (.npy)
 import numpy as np
 
+# 1. np.save() / np.load() — NumPy Binary Files (.npy)
 a = np.array([[1, 2, 3],
               [4, 5, 6]])
 np.save("data.npy", a)

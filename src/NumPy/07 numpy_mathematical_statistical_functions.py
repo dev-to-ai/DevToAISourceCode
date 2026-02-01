@@ -5,9 +5,9 @@ AI = Linear Algebra + Statistics on steroids.
 These NumPy functions are the muscles your models use to think.
 """
 
-# 1. Must-Know Aggregation Functions
 import numpy as np
 
+# 1. Must-Know Aggregation Functions
 x = np.array([1, 2, 3, 4])
 
 # Sum

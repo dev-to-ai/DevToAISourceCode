@@ -1,4 +1,5 @@
 ########## Eleven. Data Cleaning with Numpy ##########
+
 """
 Real-world data often contains:
 Missing values (NaN)
@@ -8,9 +9,9 @@ Invalid entries after division or logs
 NumPy gives you fast, vectorized tools to clean this safely.
 """
 
-# 1. np.isnan(a) — Detect Missing Values
 import numpy as np
 
+# 1. np.isnan(a) — Detect Missing Values
 a = np.array([1.0, 2.0, np.nan, 4.0])
 mask = np.isnan(a)
 print(mask)

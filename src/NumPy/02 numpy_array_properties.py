@@ -1,12 +1,13 @@
 ########## Two. NumPy Arrays Properties (ndarray) ##########
 
+import numpy as np
+
 # 1. A NumPy array (ndarray) is:
 # A same data type container
 # Stored in contiguous memory
 # Designed for multi-dimensional math
 
 # 2. Create a 2D NumPy array (matrix)
-import numpy as np
 arr = np.array([[1, 2, 3],
                 [4, 5, 6]])
 print(arr)

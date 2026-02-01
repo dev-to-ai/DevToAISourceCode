@@ -2,9 +2,9 @@
 
 # Vectorization means performing operations on entire arrays at once, instead of looping element by element in Python.
 
-# 1. Element-Wise Operations
-
 import numpy as np
+
+# 1. Element-Wise Operations
 
 x = np.array([1, 2, 3])
 y = np.array([4, 5, 6])

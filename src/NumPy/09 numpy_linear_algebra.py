@@ -1,8 +1,8 @@
 ########## Nine. Linear Algebra ##########
 
-# 1. Dot Product & Matrix Multiplication
 import numpy as np
 
+# 1. Dot Product & Matrix Multiplication
 # Dot Product
 a = np.array([1, 2, 3])
 b = np.array([4, 5, 6])

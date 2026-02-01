@@ -1,4 +1,4 @@
-########## ONE PYHON LISTS FOR AI ##########
+########## I. PYTHON LISTS FOR AI ##########
 
 ##### One - List Properties
 

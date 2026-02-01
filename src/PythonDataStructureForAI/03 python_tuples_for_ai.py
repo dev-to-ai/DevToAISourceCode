@@ -1,4 +1,4 @@
-########## THREE PYHON TUPLES FOR AI ##########
+########## III. PYTHON TUPLES FOR AI ##########
 
 ##### Tuples are immutable, ordered collections in Python. They're similar to lists but with one key difference: once created, their elements cannot be changed.
 

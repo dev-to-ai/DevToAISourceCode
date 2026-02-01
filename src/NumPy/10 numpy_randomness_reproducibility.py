@@ -1,5 +1,7 @@
 ########## Ten. Numpy Randomness & Reproducibility ##########
 
+import numpy as np
+
 # 1. Why Randomness Exists in AI
 
 """
@@ -17,8 +19,6 @@ Solution: control randomness with a seed
 """
 
 # 2. np.random.seed() — Reproducibility
-import numpy as np
-
 np.random.seed(42)
 print(np.random.rand(5))
 """ PRINT RESULT:

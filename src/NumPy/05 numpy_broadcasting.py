@@ -8,6 +8,8 @@ Instead of forcing you to manually reshape arrays, NumPy automatically stretches
 This is why NumPy is fast, clean, and perfect for AI.
 """
 
+import numpy as np
+
 # 1. Broadcasting Rules:
 """
 When operating on two arrays:
@@ -29,7 +31,6 @@ No real memory copy happens → this is why NumPy is fast.
 """
 
 # 2. Example 1: Scalar + Matrix (Easiest Case)
-import numpy as np
 A = np.array([[1, 2, 3],
               [4, 5, 6]])
 result = A + 10
