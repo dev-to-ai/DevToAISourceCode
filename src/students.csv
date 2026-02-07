@@ -1,0 +1,11 @@
+student_id,name,age,gender,city,score,attendance
+1001,Alice,23,F,Toronto,88,0.92
+1002,Bob,27,M,Vancouver,92,0.85
+1003,Charlie,,M,Toronto,79,0.88
+1004,David,31,M,Calgary,,0.90
+1005,Eva,25,F,Vancouver,95,
+1006,Frank,29,M,Toronto,67,0.70
+1007,Grace,22,F,Calgary,85,0.95
+1008,Helen,34,F,Toronto,90,0.80
+1009,Ian,28,M,,73,0.75
+1010,Jane,26,F,Vancouver,89,0.93

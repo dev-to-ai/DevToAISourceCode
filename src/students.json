@@ -1,0 +1,12 @@
+[
+{"student_id":1001,"name":"Alice","age":23.0,"gender":"F","city":"Toronto","score":88.0,"attendance":0.92},
+{"student_id":1002,"name":"Bob","age":27.0,"gender":"M","city":"Vancouver","score":92.0,"attendance":0.85},
+{"student_id":1003,"name":"Charlie","age":null,"gender":"M","city":"Toronto","score":79.0,"attendance":0.88},
+{"student_id":1004,"name":"David","age":31.0,"gender":"M","city":"Calgary","score":null,"attendance":0.9},
+{"student_id":1005,"name":"Eva","age":25.0,"gender":"F","city":"Vancouver","score":95.0,"attendance":null},
+{"student_id":1006,"name":"Frank","age":29.0,"gender":"M","city":"Toronto","score":67.0,"attendance":0.7},
+{"student_id":1007,"name":"Grace","age":22.0,"gender":"F","city":"Calgary","score":85.0,"attendance":0.95},
+{"student_id":1008,"name":"Helen","age":34.0,"gender":"F","city":"Toronto","score":90.0,"attendance":0.8},
+{"student_id":1009,"name":"Ian","age":28.0,"gender":"M","city":null,"score":73.0,"attendance":0.75},
+{"student_id":1010,"name":"Jane","age":26.0,"gender":"F","city":"Vancouver","score":89.0,"attendance":0.93}
+]
