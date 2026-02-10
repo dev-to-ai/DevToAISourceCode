@@ -24,17 +24,17 @@ df.iloc[df["score"] > 80, 1]  # ❌ WRONG
 # Problem:
 # .iloc → integer positions only
 # .loc → labels + boolean masks
-✅ Correct usage
+# ✅ Correct usage
 df.loc[df["score"] > 80, "grade"] = "A"
 # Boolean mask → always .loc
 
-❌ Modifying views (SettingWithCopyWarning)
+# ❌ Modifying views (SettingWithCopyWarning)
 df_high = df[df["score"] > 80]
 df_high["grade"] = "A"   # ⚠️ warning
 # Problem:
 # Might not update original df
 # Silent data corruption risk
-✅ Safe patterns
+# ✅ Safe patterns
 df.loc[df["score"] > 80, "grade"] = "A"
 # or
 df_high = df[df["score"] > 80].copy()
@@ -61,6 +61,6 @@ X = df[features].to_numpy()
 
 # ✅ Keep columns numeric for ML
 # ML wants: float32 / float64
-❌ Objects / strings
-❌ Mixed types
+# ❌ Objects / strings
+# ❌ Mixed types
 # Encoding comes before .to_numpy().
