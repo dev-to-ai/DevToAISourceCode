@@ -1,0 +1,289 @@
+One. Descriptive Statistics - What does the data look like?
+
+Before models, before ML - this is how you talk to your data.
+
+1. Mean
+Average value.
+Sensitive to extreme values (outliers异常值).
+
+ML intuition直觉
+If one user spends $1M once, the mean is useless for typical user.
+
+2. Median中位数
+Middle value when sorted.
+Resistant to outliers.
+
+Rule you must remember:
+Mean > median → right-skewed (long tail on the right)
+Mean < median → left-skewed
+
+ML intuition
+Median is better for prices, income, time spent, latencies延迟.
+
+3. Variance方差 & Standard Deviation标准差
+Variance: how spread out the data is.
+Std: average distance from the mean.
+
+High std means:
+Data is noisy
+Model has harder job
+Scaling matters
+
+Low std means:
+Feature might not add much info
+
+4. Percentiles百分位数 & IQR四分位距
+Percentile = value below which X% of data falls
+IQR = Q3 − Q1 (middle 50%)
+
+Why ML engineers love IQR?
+Robust to outliers
+Great for anomaly detection
+Helps decide clipping
+
+5. Outliers
+
+Points that don’t behave like the rest
+
+Important mindset
+Outliers are not bad - they are signals.
+
+They might be:
+Fraud
+Bugs
+Rare but important users
+Never blindly delete them.
+
+Two. Probability - How likely is this?
+Probability is uncertainty thinking, not formulas.
+
+1. Random Variable
+A variable whose value you don’t know in advance.
+
+Examples:
+Will a user churn流失? (yes/no)
+How long will a request take?
+Will an email be opened?
+
+ML models predict distributions, not truths.
+
+Expected Value
+
+What you'd get on average if you repeated this many times.
+
+ML intuition
+Loss functions are expected error
+Metrics are expected performance
+
+2. Conditional Probability - How likely is A given B?
+
+Example:
+P(churn | no login in 30 days)
+
+This is the soul of ML.
+
+3. Bayes' Rule
+Update your belief when you see new evidence
+
+ML interpretation:
+Start with prior belief
+See data
+Update belief
+
+This is how:
+Naive Bayes works
+Recommendation systems evolve
+Online learning adapts
+
+Three. Distributions - What shape is my data?
+Every feature has a shape.
+
+1. Normal Distribution
+Bell curve钟形曲线
+Symmetric对称的
+Mean ≈ median ≈ mode
+
+Appears when
+Noise accumulates积累
+Measurement errors exist
+
+Many models assume this.
+
+2. Skewed Distributions偏态分布
+Right-skewed: long tail to the right (income, time)
+Left-skewed: long tail to the left
+
+ML trick
+Log transform right-skewed data
+Makes models happier
+
+3. Multimodal Data
+More than one peak.
+
+Example:
+Users from different countries
+Weekday vs weekend behavior
+
+ML danger
+One model might not fit all groups
+Clustering may help
+
+Four. Sampling & Estimation - Why metrics lie?
+You never see the full population.
+
+1. Sample vs Population
+Population: all users
+Sample: data you have
+Your model only knows the sample.
+
+2. Sampling Bias
+Your data is not representative.
+
+Examples:
+Only active users
+Only paid users
+Only recent users
+
+This kills models silently.
+
+3. Central Limit Theorem中心极限定理是统计学核心定理，指出从任意总体中抽样，当样本量 \(n\) 足够大时，样本平均数的分布近似于正态分布（钟形曲线），且其均值接近原总体均值，标准差为原总体标准差除以 \(\sqrt{n}\)。
+
+Even if data is weird:
+The mean of samples becomes normal
+
+This is why:
+Confidence intervals work
+Cross-validation makes sense
+
+4. Confidence Interval信赖区间
+A range where the true value probably lies.
+
+ML thinking
+Model accuracy is ~82% ± 2%
+
+This is how adults talk about metrics.
+
+Five. Hypothesis Testing假设检验 - Is this change real?
+This is decision-making under uncertainty.
+
+1. Null Hypothesis零假设
+Nothing changed.
+
+Example:
+New model is NOT better
+
+2. p-value
+If nothing changed, how surprising is this result?
+
+Small p-value → surprising → change likely real
+
+p-value does NOT mean:
+Probability you’re right
+Importance of result
+
+3. Type I vs Type II Errors
+Type I: false alarm (you think improvement exists)
+Type II: missed improvement
+
+In ML:
+Usually Type II is worse
+
+4. A/B Testing Models
+You’re constantly doing hypothesis testing when:
+Comparing models
+Tuning hyperparameters
+Evaluating features
+
+Six. Correlation & Relationships - Do things move together?
+
+1. Correlation
+Measures how two variables move together.
++1 → move together
+−1 → opposite
+0 → no linear relation
+
+2. Pearson vs Spearman
+Pearson: linear relationships
+Spearman: monotonic单调的 (rank-based)
+
+Use Spearman when:
+Data is non-linear
+Outliers exist
+
+3. Multicollinearity
+Features strongly correlated with each other.
+
+Why it’s bad
+Linear models become unstable
+Coefficients become meaningless
+
+Tree models don’t care much.
+
+Seven. Linear Models
+1.Linear Regression Assumptions
+Linear relationship
+Independent errors
+Constant variance
+No strong multicollinearity多重共线性
+
+When these break:
+Predictions still work
+Interpretations解释 break
+
+2. Residuals残差
+Prediction error = actual − predicted
+
+Residual analysis tells you
+Model misspecification模型误导
+Non-linearity
+Missing features
+
+3. Regularization (why it works)
+L2 (Ridge): shrink coefficients系数
+L1 (Lasso): remove weak features
+
+Statistical meaning:
+I don’t fully trust this data - keep the model simple.
+
+Eight. Metrics Are Random Variables
+This is a mindset思维模式 upgrade.
+
+1. Accuracy, AUC, F1
+
+They change depending on:
+Sample
+Split
+Random seed
+
+Never trust a single number.
+
+2. Cross-Validation
+Gives distribution of performance
+Reveals variance
+
+Good model:
+Slightly lower mean
+Much lower variance
+
+Nine. Bayesian Thinking
+
+Bayesian mindset:
+Everything has uncertainty
+Beliefs evolve with data
+
+ML uses:
+Probabilistic predictions
+Online systems
+Cold start
+
+Ten. What You Must Internalize吸收
+
+If you remember nothing else:
+ML is statistics + computation + data assumptions
+
+Models don’t fail because of algorithms.
+
+They fail because:
+Data is biased
+Assumptions are wrong
+Metrics are misunderstood
