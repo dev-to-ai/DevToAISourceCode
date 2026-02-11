@@ -1,0 +1,10 @@
+One. Introduction
+
+All classical ML models are just different ways to answer:
+
+Given noisy data, how do I generalize to new data?
+
+They differ in:
+Assumptions
+Bias vs variance方差
+How they use distance, probability, or rules
