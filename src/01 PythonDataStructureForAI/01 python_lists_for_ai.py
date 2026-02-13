@@ -383,6 +383,31 @@ y_val = y[2:]  # Same as y[2:len(y)]
 # Result: ["cat"]
 """
 
+# IMPORTANT: In real projects with 1000+ samples, you MUST shuffle before splitting!
+# Otherwise, all cats might end up in training and all dogs in validation!
+"""
+# Real-world pattern:
+import random
+
+# PRO TIP: Set random seed for reproducibility!
+random.seed(42)  # Same shuffle every time = reproducible experiments
+# This ensures you get the same split every time you run the code
+
+# Pair features with labels and shuffle
+combined = list(zip(X, y))
+random.shuffle(combined)  # Shuffles the pairs randomly
+
+# Unzip back into shuffled X and y
+X_shuffled, y_shuffled = zip(*combined)
+
+# Now split the SHUFFLED data
+split_idx = int(len(X_shuffled) * 0.8)
+X_train = X_shuffled[:split_idx]
+X_val = X_shuffled[split_idx:]
+y_train = y_shuffled[:split_idx]
+y_val = y_shuffled[split_idx:]
+"""
+
 print(f"\nStep 5: Data split complete")
 print(f"  Training: {len(X_train)} samples")
 print(f"  Validation: {len(X_val)} samples")
