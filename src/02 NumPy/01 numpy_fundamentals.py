@@ -15,11 +15,11 @@ Much faster than Python lists (written in C)
 Handles large datasets efficiently
 Basis for Pandas, SciPy, scikit-learn, TensorFlow, PyTorch
 Used for data preprocessing, feature engineering, and math operations in AI
-If you’re learning AI or ML, NumPy is mandatory.
+If you are learning AI or ML, NumPy is mandatory.
 
 Installation & Setup
 Make sure you have Python installed.
-Istallation: pip install numpy
+Installation: pip install numpy
 Check: print(np.__version__)
 """
 
