@@ -1,6 +1,7 @@
 ########## Three. Python Tuples for AI ##########
 
-# Tuples are immutable, ordered collections in Python. They're similar to lists but with one key difference: once created, their elements cannot be changed.
+# Tuples are immutable, ordered collections in Python. 
+# They're similar to lists but with one key difference: once created, their elements cannot be changed.
 
 # 1. Tuple Properties
 """
@@ -180,7 +181,85 @@ results = Metrics(0.95, 0.94, 0.93, 0.935)
 print(f"F1 Score: {results.f1_score}")
 # PRINT RESULT: F1 Score: 0.935
 
-# 12. Summary:
+# 12. Tuple Comparison in Model Selection
+model_v1 = ("ResNet50", 224, 0.001)
+model_v2 = ("ResNet50", 224, 0.0001)
+
+print(f"v1 == v2: {model_v1 == model_v2}")  # False (different LR)
+print(f"v1 < v2: {model_v1 < model_v2}")    # False (compares element-wise)
+# PRINT RESULT: v1 == v2: False
+# PRINT RESULT: v1 < v2: False
+
+# 13. Real-World Dataset Example: Working with Image Dataset Metadata
+image_dataset = (
+    ("train_001.jpg", (224, 224, 3), (0.5, 0.2, 0.1)),  # filename, shape, label (one-hot)
+    ("train_002.jpg", (224, 224, 3), (0.0, 0.7, 0.3)),
+    ("train_003.jpg", (224, 224, 3), (0.1, 0.1, 0.8))
+)
+
+# Batch processing
+for filename, shape, label in image_dataset[:2]:  # First 2 samples
+    print(f"Processing {filename}: shape={shape}, dominant class={max(range(len(label)), key=lambda i: label[i])}")
+""" PRINT RESULT:
+Processing train_001.jpg: shape=(224, 224, 3), dominant class=0
+Processing train_002.jpg: shape=(224, 224, 3), dominant class=1
+"""
+
+# 14. Speed Comparison: Tuples vs Lists
+import timeit
+
+# Setup code
+setup = """
+tuple_data = tuple(range(1000))
+list_data = list(range(1000))
+"""
+
+# Test access speed
+tuple_time = timeit.timeit("tuple_data[500]", setup=setup, number=1000000)
+list_time = timeit.timeit("list_data[500]", setup=setup, number=1000000)
+
+print(f"Tuple access: {tuple_time:.4f}s")
+print(f"List access: {list_time:.4f}s")
+print(f"Tuple is {(list_time/tuple_time - 1)*100:.1f}% faster")
+""" PRINT RESULT:
+Tuple access: 0.0175s
+List access: 0.0167s
+Tuple is -4.6% faster
+"""
+
+# 15. Safe Configuration Management
+def safe_model_init(config):
+    if not isinstance(config, tuple):
+        raise TypeError(f"Config must be a tuple, got {type(config)}")
+    if len(config) != 4:
+        raise ValueError(f"Config must have 4 elements, has {len(config)}")
+    
+    model_name, input_shape, classes, lr = config
+    print(f"Initialized {model_name} safely")
+    return config
+
+# Test
+try:
+    safe_model_init(["CNN", 224, 10, 0.001])  # Wrong type
+except TypeError as e:
+    print(f"Error caught: {e}")
+# PRINT RESULT: Error caught: Config must be a tuple, got <class 'list'>
+
+# 16. Summary:
+
+"""
+Quick Reference: Tuples vs Lists in AI
+┌─────────────────┬─────────────────────────────┬───────────────────────────┐
+│ Use Case        │ Tuple                       │ List                      │
+├─────────────────┼─────────────────────────────┼───────────────────────────┤
+│ Model configs   │ Perfect (immutable)         │ Risky (can change)        │
+│ Batch data      │ No (needs modification)     │ Yes (dynamic)             │
+│ Dict keys       │ Yes (hashable)              │ No (unhashable)           │
+│ Memory          │ 16% less memory             │ More overhead             │
+│ Speed           │ Faster access               │ Slightly slower           │
+└─────────────────┴─────────────────────────────┴───────────────────────────┘
+"""
+
 """
 Key Takeaways for AI:
 
