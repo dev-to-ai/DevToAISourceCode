@@ -4,6 +4,12 @@
 A Python list is an ordered, mutable collection of items that can hold elements of different data types.
 
 Think of it as a flexible container that can grow, shrink, and change as needed, unlike arrays in many other languages that are fixed in size and type.
+
+Python lists are dynamic arrays, not linked lists.
+- Contiguous memory allocation
+- Over-allocates space (about 12.5% extra) for efficient appends
+- Resizes when capacity is reached (copies to new memory location)
+- Great for indexing, expensive for insertions at beginning
 """
 
 # 1. List Properties
@@ -49,6 +55,23 @@ print(f"Original after deep copy mod: {original_nested}")
 # Original after deep copy mod: [[99, 2], [3, 4]]
 # Unchanged
 
+"""
+When you perform a shallow copy, Python creates a new container, but it doesn't create new versions of the objects inside that container. 
+Instead, it just copies the references (memory addresses) to those inner objects.
+
+Feature                     Shallow Copy (list.copy())                  Deep Copy (copy.deepcopy())
+New Outer Container?        Yes                                         Yes
+New Inner Objects?          No (References only)                        Yes (Full recursion)
+Memory Usage                Low (Fast)                                  High (Slower)
+Modification Safety         Unsafe for nested data                      Safe for all data
+Best For                    Flat lists or simple data                   Tensors, nested JSON, AI batches
+
+Real-World AI Impact
+In AI workflows, this distinction usually pops up in two places:
+Data Augmentation: If you are creating "variants" of a batch of images by modifying a nested list of pixel values, a shallow copy will overwrite your original training data.
+Reinforcement Learning: When copying an "Environment State" to simulate a future move, a shallow copy might accidentally update the actual game state, leading to "time-travel" bugs.
+"""
+
 # 2. Essential Built-in List Methods
 
 # 2.1 .append(value) - Adds a single item to the end
@@ -93,7 +116,7 @@ print(my_list)
 removed_item = my_list.pop(1)
 print(removed_item) 
 # 2026
-# Use remove if you know the value you want to get rid of; use pop if you know the position (index) of the item.
+# Use remove if you know the value you want to get rid of (the first one); use pop if you know the position (index) of the item.
 
 # 2.6 .index(value) - Returns the FIRST index of a value
 # Finding where a specific label is located
@@ -111,6 +134,10 @@ print(my_list.count(True))
 
 """
 Time Complexities Every AI Engineer Should Know:
+
+O(1): It takes the same amount of time to complete, regardless of how much data you throw at it. It is the "gold standard" of efficiency.
+
+O(n): Its execution time grows proportionally with the size of the input. If you double the data, you double the time.
 
 O(1) - Fast (constant time):
     list.append(item)     # Adding to end
@@ -232,7 +259,7 @@ print(f"Binary Labels: {binary_labels}")
 dataset = ["img1", "img2", "img3", "img4", "img5", "img6", "img7", "img8", "img9", "img10"]
 # Syntax: list[start:stop] -> 'stop' is not included
 train_data = dataset[:8]  # Indices 0 through 7
-test_data = dataset[8:]   # Indices 8 through the end
+test_data = dataset[8:]   # Indices 8 through the end 9
 print(f"Training set (80%): {train_data}") 
 # PRINT RESULT: Training set (80%): ['img1', 'img2', 'img3', 'img4', 'img5', 'img6', 'img7', 'img8']
 print(f"Testing set (20%):  {test_data}") 
@@ -253,7 +280,10 @@ print(f"Train: {train} | Val: {val} | Test: {test}")
 # The step is 2. Take every 2nd item from the entire dataset
 downsampled_data = dataset[::2]
 print(f"Every 2nd sample: {downsampled_data}") 
-# Every 2nd sample: ['img1', 'img3', 'img5', 'img7', 'img9']
+# PRINT RESULT: Every 2nd sample: ['img1', 'img3', 'img5', 'img7', 'img9']
+downsampled_data = dataset[::3]
+print(f"Every 3rd sample: {downsampled_data}") 
+# PRINT RESULT: Every 3rd sample: ['img1', 'img4', 'img7', 'img10']
 # The step is -1. Reverse the dataset (occasionally used for data augmentation)
 reversed_data = dataset[::-1]
 print(f"Reversed data: {reversed_data}") 
@@ -276,11 +306,11 @@ print(f"First two data rows: {subset}")
 
 """
 A complete mini AI pipeline using only lists:
-1. Load raw data
-2. Clean and preprocess
-3. Filter low-quality samples
-4. Separate features from labels
-5. Prepare for model training
+Step 1. Load raw data
+Step 2. Clean and preprocess
+Step 3. Filter low-quality samples
+Step 4. Separate features from labels
+Step 5. Prepare for model training
 """
 
 # Raw data from various sources (image files, sensors, etc.)
@@ -305,7 +335,7 @@ cleaned_data = [
     for fname, feat1, feat2, label in raw_data
 ]
 
-print("\nStep 2: Cleaned Data:")
+print("\nStep 2: Cleaned Data Sample:")
 print(cleaned_data[:2])
 """ PRINT RESULT:
 Step 2: Cleaned Data:
@@ -315,9 +345,9 @@ Step 2: Cleaned Data:
 # Step 3: Filter - keep only high confidence samples (feat1 > 0.5)
 high_conf_data = [
     item for item in cleaned_data 
-    if item[1] > 0.5  # Confidence threshold
+    if item[1] > 0.5  # Confidence threshold: feat1 > 0.5
 ]
-# high_conf_data is [['image1.jpg', 0.95, 0.23, 'cat'], ['image3.jpg', 0.88, 0.12, 'cat'], ['image5.jpg', 0.91, 0.34, 'cat']]
+# high_conf_data: [['image1.jpg', 0.95, 0.23, 'cat'], ['image3.jpg', 0.88, 0.12, 'cat'], ['image5.jpg', 0.91, 0.34, 'cat']]
 
 
 print(f"\nStep 3: High confidence samples ({len(high_conf_data)} of {len(raw_data)}):")
@@ -341,6 +371,7 @@ X = [
 ]
 """
 y = [label for _, _, _, label in high_conf_data]
+# _: Means "ignore this"
 # y = ["cat", "cat", "cat"]
 
 print(f"\nStep 4: Ready for training!")
@@ -348,7 +379,7 @@ print(f"Features (X): {len(X)} samples, each with 3 features")
 print(f"Labels (y): {len(y)} samples: {set(y)}")
 # set(y)  # Returns: {"cat"}  (a set with one unique value)
 """
-# If y had mixed labels:
+If y had mixed labels: 
 y_mixed = ["cat", "dog", "cat", "bird", "dog"]
 set(y_mixed)  # Returns: {"cat", "dog", "bird"}
 """
@@ -359,14 +390,14 @@ Labels (y): 3 samples: {'cat'}
 """
 
 # Step 5: Train/validation split (80/20)
-# This is the 80/20 train-validation split - one of the most fundamental patterns in machine learning
+# It is one of the most fundamental patterns in machine learning
 # Calculate where to cut
 split_idx = int(len(X) * 0.8)
 # len(X) = 3
 # 3 * 0.8 = 2.4
 # int(2.4) = 2
-X_train, X_val = X[:split_idx], X[split_idx:]
-y_train, y_val = y[:split_idx], y[split_idx:]
+X_train, X_val = X[:split_idx], X[split_idx:] # X_train, X_val = X[:2], X[2:]
+y_train, y_val = y[:split_idx], y[split_idx:] # y_train, y_val = y[:2], y[2:] 
 """
 # Training set - first 2 samples (indices 0 and 1)
 X_train = X[:2]  # Same as X[0:2]
