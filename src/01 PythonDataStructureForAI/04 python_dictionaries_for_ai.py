@@ -38,7 +38,7 @@ print("Valid keys:", valid_dict)
 # invalid_dict = {[1, 2]: "list key"}  # lists are mutable. unhashable type: 'list'
 
 # 1.4 Fast access: Average O(1) time complexity for lookups.
-print("Name lookup:", student["name"])   # Fast key-based access
+print("Name lookup:", student["name"]) # Fast key-based access
 # PRINT RESULT: Name lookup: Alice
 # Demonstrating dictionary access vs list access
 numbers = list(range(1_000_000))
@@ -269,7 +269,7 @@ Creates a new dictionary with the same keys but normalized values
 """
 
 print("Original max value:", global_max)
-# PEINT RESULT: Original max value: 400
+# PRINT RESULT: Original max value: 400
 print("Normalized samples:")
 for sample, values in normalized_data.items():
     print(f"  {sample}: {values}")
@@ -280,6 +280,42 @@ Normalized samples:
   sample3: [0.5, 0.75, 1.0, 0.625]
   sample4: [0.125, 0.25, 0.375, 0.188]
 """
+
+# 4.5 setdefault() - Efficient Grouping
+print("\n--- setdefault(): Grouping Data by Category ---")
+
+# Group validation errors by type
+validation_errors = [
+    ("type_error", "Expected int, got str"),
+    ("value_error", "Value out of range"),
+    ("type_error", "Expected float, got bool"),
+    ("key_error", "Missing required key"),
+    ("value_error", "Negative value not allowed")
+]
+
+# Group without setdefault (verbose)
+error_groups = {}
+for error_type, message in validation_errors:
+    if error_type not in error_groups:
+        error_groups[error_type] = []
+    error_groups[error_type].append(message)
+
+# Group with setdefault (elegant)
+error_groups_clean = {}
+for error_type, message in validation_errors:
+    error_groups_clean.setdefault(error_type, []).append(message)
+
+print("Errors grouped by type:")
+for error_type, messages in error_groups_clean.items():
+    print(f"  {error_type}: {len(messages)} errors")
+""" PRINT RESULT:
+--- setdefault(): Grouping Data by Category ---
+Errors grouped by type:
+  type_error: 2 errors
+  value_error: 2 errors
+  key_error: 1 errors
+"""    
+
 # 5. Model Checkpoint Dictionary
 print("\n--- Model Checkpoint: Saving Training State ---")
 # PRINT RESULT: --- Model Checkpoint: Saving Training State ---
@@ -461,7 +497,118 @@ List index access (1000x): 0.000128 seconds
 Dictionary is 0.8x faster for random access!
 """
 
-# 8. Summary: When to Use Dictionaries in AI
+# 8. Real-World: Transformer Model Configuration
+print("\n--- Real-World: GPT-style Model Config ---")
+
+gpt_config = {
+    "model_type": "causal_lm",
+    "vocab_size": 50257,
+    "max_position_embeddings": 1024,
+    "hidden_size": 768,
+    "num_hidden_layers": 12,
+    "num_attention_heads": 12,
+    "intermediate_size": 3072,
+    "hidden_act": "gelu",
+    "hidden_dropout_prob": 0.1,
+    "attention_probs_dropout_prob": 0.1,
+    "initializer_range": 0.02,
+    "layer_norm_eps": 1e-5,
+    "use_cache": True,
+    "bos_token_id": 50256,
+    "eos_token_id": 50256,
+}
+
+# Calculate model parameters
+hidden_size = gpt_config["hidden_size"]
+num_layers = gpt_config["num_hidden_layers"]
+intermediate_size = gpt_config["intermediate_size"]
+vocab_size = gpt_config["vocab_size"]
+
+# Approximate parameter count
+embedding_params = vocab_size * hidden_size
+attention_params = num_layers * (4 * hidden_size * hidden_size)  # Q,K,V,O
+ffn_params = num_layers * (2 * hidden_size * intermediate_size)  # Up and down projections
+total_params = embedding_params + attention_params + ffn_params
+
+print(f"Model: {gpt_config['model_type']}")
+print(f"Layers: {gpt_config['num_hidden_layers']}")
+print(f"Hidden size: {gpt_config['hidden_size']}")
+print(f"Attention heads: {gpt_config['num_attention_heads']}")
+print(f"Approximate parameters: {total_params/1e6:.1f}M")
+""" PRINT RESULT:
+--- Real-World: GPT-style Model Config ---
+Model: causal_lm
+Layers: 12
+Hidden size: 768
+Attention heads: 12
+Approximate parameters: 123.5M
+"""
+
+# 9. Dictionary Views - Dynamic and Efficient
+print("\n--- Dictionary Views: Live Windows into Data ---")
+
+training_log = {
+    "epoch": 5,
+    "loss": 0.234,
+    "accuracy": 0.912,
+    "val_loss": 0.289,
+    "val_accuracy": 0.887
+}
+
+# Views are dynamic - they update when the dictionary changes
+keys_view = training_log.keys()
+values_view = training_log.values()
+items_view = training_log.items()
+
+print(f"Initial keys: {list(keys_view)}")
+
+# Add a new metric
+training_log["learning_rate"] = 0.001
+print(f"Updated keys: {list(keys_view)}")  # Automatically includes new key
+
+# Views support set operations
+mandatory_metrics = {"loss", "accuracy", "epoch"}
+current_metrics = set(training_log.keys())
+missing_metrics = mandatory_metrics - current_metrics
+print(f"Missing metrics: {missing_metrics}")
+""" PRINT RESULT:
+--- Dictionary Views: Live Windows into Data ---
+Initial keys: ['epoch', 'loss', 'accuracy', 'val_loss', 'val_accuracy']
+Updated keys: ['epoch', 'loss', 'accuracy', 'val_loss', 'val_accuracy', 'learning_rate']
+Missing metrics: set()
+"""
+
+# 10. Memory Efficiency: Dict vs List for Lookup Tables
+print("\n--- Memory Usage: Dictionary vs List for Lookup ---")
+
+import sys
+
+# Create mapping of 10,000 IDs to values
+n_items = 10000
+id_to_value_dict = {i: f"user_{i}" for i in range(n_items)}
+
+# List approach (parallel arrays)
+ids_list = list(range(n_items))
+values_list = [f"user_{i}" for i in range(n_items)]
+
+dict_size = sys.getsizeof(id_to_value_dict) + sum(sys.getsizeof(k) + sys.getsizeof(v) 
+                                                   for k, v in id_to_value_dict.items())
+list_size = sys.getsizeof(ids_list) + sys.getsizeof(values_list) + \
+            sum(sys.getsizeof(i) for i in ids_list) + \
+            sum(sys.getsizeof(v) for v in values_list)
+
+print(f"Dictionary total memory: {dict_size/1024:.1f} KB")
+print(f"List pair total memory: {list_size/1024:.1f} KB")
+print(f"Dictionary uses {dict_size/list_size*100:.1f}% of list memory")
+""" PRINT RESULT:
+--- Memory Usage: Dictionary vs List for Lookup ---
+Dictionary total memory: 1048.7 KB
+List pair total memory: 922.0 KB
+Dictionary uses 113.7% of list memory
+"""
+
+# 11. Summary: 
+# When to Use Dictionaries in AI
 print("\n--- Summary: Dictionary Use Cases in AI ---")
 summary = {
     "Hyperparameters": "Store and organize model configuration",
