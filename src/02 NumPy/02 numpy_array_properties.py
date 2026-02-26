@@ -133,7 +133,7 @@ print(f"Base array exists: {view.base is not None}")
 # PRINT RESULT: Base array exists: True
 
 # 8. Special array types
-# Structured array (like a spreadsheet row)
+# Structured array (like a spreadsheet row - mixed data types)
 structured = np.array([('Alice', 25, 165.5),
                        ('Bob', 30, 180.2)],
                       dtype=[('name', 'U10'), ('age', 'i4'), ('height', 'f4')])
@@ -161,3 +161,28 @@ try:
 except:
     pass
 # PRINT RESULT: Mixed array becomes: ['1' 'two' '3.0'], dtype: <U32
+
+# 10. Quick Reference Card
+print("\n" + "=" * 60)
+print("📌 QUICK REFERENCE CARD")
+print("=" * 60)
+
+reference = """
+Attribute    Description                    Example Usage
+─────────────────────────────────────────────────────────────────
+.ndim        Number of dimensions           arr.ndim → 2
+.shape       Size per dimension             arr.shape → (3, 4)
+.size        Total elements                 arr.size → 12
+.dtype       Data type                      arr.dtype → int64
+.itemsize    Bytes per element               arr.itemsize → 8
+.nbytes      Total memory usage              arr.nbytes → 96
+.strides     Bytes to step in each dim       arr.strides → (32, 8)
+
+Pro Tips:
+• Use .shape for debugging array dimensions
+• Monitor .nbytes for large datasets
+• Choose float32 over float64 when possible in deep learning
+• Check .dtype before operations to avoid unexpected results
+"""
+
+print(reference)

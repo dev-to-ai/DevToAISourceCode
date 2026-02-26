@@ -287,3 +287,14 @@ They fail because:
 Data is biased
 Assumptions are wrong
 Metrics are misunderstood
+
+The Statistics Stack for ML Engineers
+Level 1: Descriptive (What happened?)
+Level 2: Inferential (What might happen?)
+Level 3: Predictive (What will happen?)
+Level 4: Causal (Why does it happen?)
+Most ML stops at Level 3. The best engineers understand Level 4.
+
+Eleven. Final Thought
+ML = telling stories with data, using math as your language.
+Statistics is how you know if those stories are true.
